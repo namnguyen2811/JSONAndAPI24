@@ -30,5 +30,13 @@ public class B_JsonArrayPractice {
             System.out.println(film);
         }
 
+        JSONArray starshipsArray = (JSONArray) json.get("starships");
+        int m = starshipsArray.size();
+        System.out.println("STARSHIPS: ");
+        for (int i = 0; i<m; i++){
+            String starships = (String) starshipsArray.get(i);
+            System.out.println(starships);
+        }
+
     } // end of constructor
 }

@@ -10,22 +10,22 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class D_ReadATLA {
+public class F_ReviewJSON {
 
     public static void main(String[] args) throws ParseException {
-        D_ReadATLA atla = new D_ReadATLA();
+        F_ReviewJSON pokemon = new F_ReviewJSON();
     }
 
-    public D_ReadATLA() throws ParseException {
+    public F_ReviewJSON() throws ParseException {
         pull();
     }
 
     public void pull() throws ParseException {
         String output = "";
-        String jsonString = "";
+        String jsonString="";
         try {
 
-            URL url = new URL("https://last-airbender-api.fly.dev/api/v1/characters"); /** Your API's URL goes here */
+            URL url = new URL("https://pokeapi.co/api/v2/pokemon/pikachu/"); /** Your API's URL goes here */
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -57,14 +57,20 @@ public class D_ReadATLA {
 
         // turn your string into a JSON object using a parser
         JSONParser parser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) parser.parse(jsonString);
-        System.out.println("JSON ARRAY: " + jsonArray);
+        JSONObject pikachu = (JSONObject) parser.parse(jsonString);
+        System.out.println("Pikachu's JSON: " + pikachu);
 
-        /* TODO : print the allies of the first character in the JSON */
-        // here is a line to get you started:
-        JSONObject character = (JSONObject) jsonArray.get(0); // 0 index is the first character
-
-        /* TODO : print the "name" of every character in the jsonArray */
+        /* TODO : print all of Pikachu's "moves" */
+        // feel free to paste this URL into your browser to explore the JSON: https://pokeapi.co/api/v2/pokemon/pikachu/
+        JSONArray moves = (JSONArray) pikachu.get("moves");
+        System.out.println("Pikachu moves: ");
+        for (int n = 0; n<pikachu.size(); n++){
+            JSONObject movesPiece = (JSONObject) moves.get(n);
+            JSONObject pikachuMoves = (JSONObject) movesPiece.get("move");
+            String name = (String) pikachuMoves.get("name");
+            System.out.println(name);
+        }
 
     }
+
 }

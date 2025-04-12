@@ -14,10 +14,12 @@ public class A_JsonSimplePractice {
         file.put("Tuition Fees", 65400);
 
         // print the whole JSON
-        System.out.println("JOSN: " + file);
+        System.out.println("JSON: " + file);
 
         // extract one value from the JSON
-        System.out.print("Tuition cost: " + file.get("Tuition Fees"));
+        System.out.println("Tuition cost: " + file.get("Tuition Fees"));
+        System.out.println("Student name: " + file.get("Full name"));
+        System.out.println("Student ID: " + file.get("Student ID"));
     }
 }
 
